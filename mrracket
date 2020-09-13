@@ -5,6 +5,7 @@
 set -u  # terminate when accessing uninitialized variable
 set -e  # terminate with error
 
+
 LANGUAGES=(BSL BSL+ ISL ISL+ ASL)
 READERS=(beginner beginner-abbr intermediate intermediate-lambda advanced)
 
@@ -18,9 +19,8 @@ _POST='-reader.ss" "lang")((modname x) (read-case-sensitive #t) (teachpacks ()) 
 print_help ()
 {
 	 echo "mrracket: run and create DrRacket files from the command line"
-	 echo "Usage: $0 [-h] [-I] [-L LANGUAGE] FILE"
+	 echo "Usage: $0 [-h] [-L LANGUAGE] FILE"
 	 echo "  -h            display this help message"
-	 echo "  -I            install mrracket where drracket is"
 	 echo "  -L LANGUAGE   create DrRacket source file for HtDP LANGUAGE"
 	 echo "                available languages: ${LANGUAGES[@]}"
 	 echo "  FILE          source file to run or create"
@@ -48,25 +48,11 @@ check_language ()
 }
 
 
-# install this script where drracket is
-install ()
-{
-	 DIR=$(dirname $(which drracket))
-	 cp "$0" "$DIR"
-	 chmod u+x "$DIR/$(basename $0)"
-	 echo "$0: installation of mrracket in $DIR successful."
-	 exit 0
-}
-
-
-while getopts ":hIL:" opt; do
+while getopts ":hL:" opt; do
 	 case $opt in
 		  h)
 				print_help
 				exit 0
-				;;
-		  I)
-				install
 				;;
 		  L)
 				LANGUAGE=$OPTARG
