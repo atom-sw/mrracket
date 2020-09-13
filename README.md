@@ -46,14 +46,14 @@ mrracket example.rkt
 
 This achieves something similar to clicking *Run* in DrRacket:
 it loads the definitions in `example.rkt` and runs any tests defined there.
-Afterwards, it also opens Racket's REPL environment, which is like DrRacket's interactions area.
+Afterwards, it also opens Racket's REPL prompt, which is like DrRacket's interactions area.
 However, the definitions in `example.rkt` are only available after you type:
 
 ```
 ,enter example.rkt
 ```
 
-at the interactions prompt.
+at the prompt.
 
 Whenever you edit the content of `example.rkt` with your favorite text
 editor, you have to repeat the process:
