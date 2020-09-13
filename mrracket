@@ -1,0 +1,107 @@
+#! /bin/bash
+
+## Copyright 2020 Carlo A. Furia
+
+set -u  # terminate when accessing uninitialized variable
+set -e  # terminate with error
+
+LANGUAGES=(BSL BSL+ ISL ISL+ ASL)
+READERS=(beginner beginner-abbr intermediate intermediate-lambda advanced)
+
+
+_PRE=';; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-'
+_POST='-reader.ss" "lang")((modname x) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #t #t none #f () #f)))'
+
+
+print_help ()
+{
+	 echo "mrracket: run and create DrRacket files from the command line"
+	 echo "Usage: $0 [-h] [-I] [-L LANGUAGE] FILE"
+	 echo "  -h            display this help message"
+	 echo "  -I            install mrracket where drracket is"
+	 echo "  -L LANGUAGE   create DrRacket source file for HtDP LANGUAGE"
+	 echo "                available languages: ${LANGUAGES[@]}"
+	 echo "  FILE          source file to run or create"
+}
+
+
+# check if $1 is a valid language
+# if yes, set PREAMBLE to the suitable header
+# if no, print error message and exit
+check_language ()
+{
+	 local found=0
+	 for k in "${!LANGUAGES[@]}"; do
+		  if [ "${LANGUAGES[$k]}" = "$1" ]; then
+				found=1
+				break
+		  fi
+	 done
+	 if [ $found -eq 0 ]; then
+		  echo "$0: Language $1 not recognized: quitting."
+		  exit 2
+	 else
+		  PREAMBLE="$_PRE${READERS[$k]}$_POST"
+	 fi
+}
+
+
+# install this script where drracket is
+install ()
+{
+	 DIR=$(dirname $(which drracket))
+	 cp "$0" "$DIR"
+	 chmod u+x "$DIR/$(basename $0)"
+	 echo "$0: installation of mrracket in $DIR successful."
+	 exit 0
+}
+
+
+while getopts ":hIL:" opt; do
+	 case $opt in
+		  h)
+				print_help
+				exit 0
+				;;
+		  I)
+				install
+				;;
+		  L)
+				LANGUAGE=$OPTARG
+				check_language "$LANGUAGE"
+				;;
+		  :)
+				echo "$0: Option -$OPTARG requires an argument" >&2
+				exit 2
+				;;
+		  \?)
+				echo "$0: Invalid option -$OPTARG" >&2
+				exit 2
+				;;
+	 esac
+done
+
+# Keep only non-optional arguments in $@
+shift $(($OPTIND-1))
+
+if [ "$#" -lt 1 ]; then
+	 echo "$0: No source file: quitting."
+	 exit 1
+fi
+
+SOURCE="$1"
+if [ "$#" -gt 1 ]; then
+	 echo "$0: Multiple source files: using $SOURCE only."
+fi
+
+if [ -f "$SOURCE" ]; then
+	 echo "Loading Racket REPL and running tests"
+	 echo "To use the definitions in the input file, type: ,enter \"$SOURCE\""
+	 racket -it "$SOURCE" -e '(require test-engine/racket-tests)' -e '(test)'
+else
+	 echo "$PREAMBLE" > "$SOURCE"
+	 echo "New file $SOURCE created for language $LANGUAGE"
+	 echo "Open it with: $0 $SOURCE"
+fi
