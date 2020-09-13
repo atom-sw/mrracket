@@ -22,7 +22,7 @@ MrRacket relies on a standard installation of Racket, which you can
 
 ## Installation
 
-Download [`mrracket`](https://raw.githubusercontent.com/bugcounting/mrracket/master/mrracket) and put it in a directory in the $PATH.
+Download [`mrracket`](https://raw.githubusercontent.com/bugcounting/mrracket/master/mrracket) and put it in a directory in the path.
 
 Alternatively, you can download and use the `install.sh` script,
 which will install MrRacket in the same directory where DrRacket is.
