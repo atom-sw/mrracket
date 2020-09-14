@@ -32,6 +32,7 @@ Name=DrRacket
 Comment=DrRacket
 Icon=$INSTALLDIR/racket-logo.svg
 " > "$HOME/Desktop/DrRacket.desktop"
+chmod u+x "$HOME/Desktop/DrRacket.desktop"
 
 wget -O "$DESTINATION/mrracket" https://raw.githubusercontent.com/bugcounting/mrracket/master/mrracket
 chmod u+x "$DESTINATION/mrracket"
