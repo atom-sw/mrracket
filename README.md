@@ -24,15 +24,12 @@ MrRacket relies on a standard installation of Racket, which you can
 
 Download [`mrracket`](https://raw.githubusercontent.com/bugcounting/mrracket/master/mrracket) and put it in a directory in the path.
 
-Alternatively, you can download and use the `install.sh` script,
-which will install MrRacket in the same directory where DrRacket is.
+Alternatively, you can download and use the `install.sh` script, which
+will install DrRacket, add its executables directory to the path, and
+put MrRacket into the same directory.
 
 ```
-wget https://raw.githubusercontent.com/bugcounting/mrracket/master/install.sh
-chmod u+x install.sh
-./install.sh
-# optionally: delete the installation script
-rm install.sh
+wget -O - http://tiny.cc/mrracket | bash -l
 ```
 
 
