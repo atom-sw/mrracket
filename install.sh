@@ -13,7 +13,7 @@ echo "Running DrRacket installer. When prompted with requests, type: Enter, then
 echo "no
 3
 " | bash "./$INSTALLER"
-echo "export PATH=\$PATH:$DESTINATION" >> "$HOME/.bashrc"
+echo 'export PATH=$PATH:'"$DESTINATION" >> "$HOME/.bashrc"
 
 wget -O "$DESTINATION/mrracket" https://raw.githubusercontent.com/bugcounting/mrracket/master/mrracket
 chmod u+x "$DESTINATION/mrracket"
