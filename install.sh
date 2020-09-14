@@ -10,7 +10,10 @@ DESTINATION="$HOME/racket/bin"
 wget "https://mirror.racket-lang.org/installers/$VERSION/$INSTALLER"
 chmod u+x "$INSTALLER"
 echo "Running DrRacket installer. When prompted with requests, type: Enter, then 3, then Enter."
-"./$INSTALLER"
+echo "no
+3
+skip links
+" | "./$INSTALLER"
 echo "export PATH=$PATH:$DESTINATION" >> "$HOME/.bashrc"
 
 wget -O "$DESTINATION/mrracket" https://raw.githubusercontent.com/bugcounting/mrracket/master/mrracket
