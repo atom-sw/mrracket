@@ -9,7 +9,7 @@ DESTINATION="$HOME/racket/bin"
 
 wget "https://mirror.racket-lang.org/installers/$VERSION/$INSTALLER"
 chmod u+x "$INSTALLER"
-echo "Running DrRacket installer. When prompted with requests, type: Enter, then 3, then Enter."
+echo "Running DrRacket installer into $DESTINATION."
 echo "no
 3
 " | bash "./$INSTALLER"
