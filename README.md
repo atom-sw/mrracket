@@ -69,3 +69,11 @@ mrracket -L LANGUAGE new.rkt
 where `LANGUAGE` is one of the HtDP languages: `BSL`, `BSL+`, `ISL`, `ISL+`, `ASL`.
 This command creates a new file `new.rkt`, which you can edit and run with DrRacket
 or with MrRacket.
+
+
+## Other functionalities
+
+Other functionalities of DrRacket are available through the REPL prompt.
+Try `,help` at the prompt for a list.
+For example `,doc` opens a browser with Racket's documentation, similar
+to DrRacket's *Help* menu.
