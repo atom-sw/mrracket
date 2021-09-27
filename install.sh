@@ -21,6 +21,20 @@ wget -O "$INSTALLDIR/racket-logo.svg" https://racket-lang.org/img/racket-logo.sv
 # add to path
 echo 'export PATH=$PATH:'"$DESTINATION" >> "$HOME/.bashrc"
 
+# try to retrieve Desktop folder location from config
+# so that it works also if Ubuntu is configured in a different language
+X_DIRS="$HOME/.config/user-dirs.dirs"
+if [ -f "$X_DIRS" ]; then
+	 source "$X_DIRS"
+	 DESKTOP="$XDG_DESKTOP_DIR"
+else
+	 # fallback: assume ~/Desktop is the desktop folder
+	 DESKTOP="$HOME/Desktop"
+fi
+
+echo "XXXXXX $DESKTOP"
+exit 0
+
 # add installer
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
@@ -31,8 +45,8 @@ Exec=$DESTINATION/drracket
 Name=DrRacket
 Comment=DrRacket
 Icon=$INSTALLDIR/racket-logo.svg
-" > "$HOME/Desktop/DrRacket.desktop"
-chmod u+x "$HOME/Desktop/DrRacket.desktop"
+" > "$DESKTOP/DrRacket.desktop"
+chmod u+x "$DESKTOP/DrRacket.desktop"
 
 wget -O "$DESTINATION/mrracket" https://raw.githubusercontent.com/bugcounting/mrracket/master/mrracket
 chmod u+x "$DESTINATION/mrracket"
