@@ -32,9 +32,6 @@ else
 	 DESKTOP="$HOME/Desktop"
 fi
 
-echo "XXXXXX $DESKTOP"
-exit 0
-
 # add installer
 echo "#!/usr/bin/env xdg-open
 [Desktop Entry]
