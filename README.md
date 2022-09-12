@@ -29,7 +29,15 @@ will install DrRacket, add its executables directory to the path,
 put MrRacket into the same directory, and add a desktop launcher for DrRacket.
 
 ```
-wget -O - http://tiny.cc/mrracket | bash -l
+wget -O - https://tiny.cc/mrracket | bash -l
+```
+
+If you need to call the installation script with some non-default
+options, you can pass `-s` to `bash`. For example, to activate option
+`-o` (overwrite existing installations):
+
+```
+wget -O - https://tiny.cc/mrracket | bash -l -s -- -o
 ```
 
 
