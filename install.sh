@@ -118,7 +118,7 @@ Icon=$INSTALLDIR/racket-logo.svg
 " > "$DESKTOP/DrRacket.desktop"
 chmod u+x "$DESKTOP/DrRacket.desktop"
 
-wget -O "$DESTINATION/mrracket" https://raw.githubusercontent.com/bugcounting/mrracket/master/mrracket
+wget -O "$DESTINATION/mrracket" https://raw.githubusercontent.com/atom-sw/mrracket/master/mrracket
 chmod u+x "$DESTINATION/mrracket"
 
 echo "$0: installation of DrRacket in $DESTINATION successful. Exit this terminal now."
