@@ -3,7 +3,7 @@
 set -u  # terminate when accessing uninitialized variable
 set -e  # terminate with error
 
-VERSION="9.0"
+VERSION="9.1"
 INSTALLER="racket-$VERSION-x86_64-linux.sh"
 INSTALLDIR="$HOME/racket"
 DESTINATION="$INSTALLDIR/bin"
